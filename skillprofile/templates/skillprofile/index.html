@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Myskills - Main{% endblock %}
+
+{% block content %}
+
+<h1 class="mt-2">Myskills</h1>
+<hr class="mt-0 mb-4">
+
+<br><h1 class="display-6">Website where everyone can track their skill progress.</h1><br>
+
+<h3>Used tools:</h3>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+ <div class="col">
+  <div class="card mb-3 h-100">
+    <img src="{% static 'img/django.png' %}" alt="" width="80" height="75">
+   <div class="card-body">
+    <h5 class="card-title">Django</h5>
+    <p class="card-text">
+        <ul>
+            <li>Models links: OneToOne (User<->UserInfo), OneToMany (User<->Skill), ManyToMany (Skill<->Tag)</li>
+            <li>ORM (for several views)</li>
+            <li>CBV, generics, forms</li>
+            <li>Permissions: UserPassesTestMixin, LoginRequiredMixin</li>
+            <li>Tests</li>
+            <li>Debug-tool-bar</li>
+        </ul>
+    </p>
+   </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card mb-3 h-100">
+    <img src="{% static 'img/bootstrap.png' %}" alt="" width="80" height="75">
+   <div class="card-body">
+    <h5 class="card-title">Boostrap</h5>
+    <p class="card-text">
+        <ul>
+            <li>JS and CSS are added to static and available to all apps.</li>
+            <li>Base template has navbar and footer.</li>
+            <li>Cards with used tools on the main page.</li>
+        </ul>
+    </p>
+   </div>
+  </div>
+ </div>
+  <div class="col">
+    <div class="card mb-3 h-100">
+       <img src="{% static 'img/docker.png' %}" alt="" width="70" height="70">
+      <div class="card-body">
+        <h5 class="card-title">Docker</h5>
+        <p class="card-text">
+            Project is dockerized, application and database are deployed on the same network using docker-compose.
+        </p>
+      </div>
+    </div>
+  </div>
+ <div class="col">
+  <div class="card mb-3 h-100">
+    <img src="{% static 'img/postgres.png' %}" alt="" width="80" height="75">
+   <div class="card-body">
+    <h5 class="card-title">Postgres</h5>
+    <p class="card-text">
+        Postgres is project database.
+    </p>
+   </div>
+  </div>
+ </div>
+</div>
+
+{% endblock %}

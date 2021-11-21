@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Myskills - New tag{% endblock %}
+
+{% block content %}
+
+<body>
+
+<div class="my-3"><h1>New skill tag! </h1></div>
+<hr class="mt-0 mb-4">
+
+<form method="post">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input class="btn btn-primary" type="submit" value="Save">
+</form>
+
+</body>
+
+{% endblock %}

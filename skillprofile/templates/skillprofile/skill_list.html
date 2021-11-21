@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Myskills - All skills{% endblock %}
+
+{% block content %}
+
+<body>
+
+<div class="my-3"><h1>Skills</h1></div>
+<hr class="mt-0 mb-4">
+
+<h3>List of all skills</h3>
+
+  {% for skill in object_list %}
+    <ul>
+      <li>
+        <a href="{{ skill.get_general_details_url }}">{{ skill.name | capfirst }}</a>
+        {% if skill.author_user == user and skill.status == 'finished' %}
+          <span class="badge bg-secondary"> done 👍 </span>
+        {% endif %}
+        {% if skill.author_user == user and skill.status != 'failed' and skill.status != 'finished' %}
+          <span class="badge bg-secondary">learning ✏️</span>
+        {% endif %}
+      </li>
+    </ul>
+  {% endfor %}
+
+<a href="{% url 'skill-create' %}" class="btn btn-primary">Create new skill</a>
+
+</body>
+
+{% endblock %}
