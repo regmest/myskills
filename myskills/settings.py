@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -76,16 +78,21 @@ WSGI_APPLICATION = 'myskills.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myskills',
-        'USER': 'myskills',
-        'PASSWORD': 'myskills',
-        'HOST': 'pg',
-        'PORT': 5432,
-    }
-}
+DATABASE_URL = os.getenv("DB_CONN_URI",
+                         "postgres://myskills:myskills@localhost:5432/myskills")
+
+DATABASES = {"default": dj_database_url.parse(DATABASE_URL)}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'myskills',
+#         'USER': 'myskills',
+#         'PASSWORD': 'myskills',
+#         'HOST': 'pg',
+#         'PORT': 5432,
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
