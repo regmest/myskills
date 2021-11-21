@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+
+  pg:
+    image: postgres:12
+    ports:
+      - 0.0.0.0:5432:5432
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=myskills
+      - POSTGRES_USER=myskills
+      - POSTGRES_PASSWORD=myskills
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d myskills -U myskills" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web-app:
+    build: .
+    environment:
+      DB_CONN_URI: psycopg2+postgresql://myskills:myskills@pg:5432/myskills
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/app
+    depends_on:
+      pg:
+        condition: service_healthy
+
+
