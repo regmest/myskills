@@ -1,18 +1,28 @@
 PROJECT_NAME = 'myskills'
 
-# target: makemigrations — make migrations for the database
+# local
+setup:
+	pip install --upgrade pip
+	pip install -r requirements.txt
+
 makemigrations:
-	pipenv run ./app/manage.py makemigrations
+	python manage.py makemigrations
 
-# target: migrate — migrate the database
 migrate:
-	pipenv run ./app/manage.py migrate
+	python manage.py migrate
 
-# target: run — run project with local environment
+# for local run
+# step #1
+dc up pg:
+	docker-compose up pg
+# step #2
 run:
-	pipenv run ./app/manage.py runserver
+	python manage.py runserver
 
 
+# docker
+dc up:
+	docker-compose up --build
 
 
 
