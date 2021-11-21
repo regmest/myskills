@@ -18,6 +18,21 @@ jobs:
       matrix:
         python-version: [3.7, 3.8, 3.9]
 
+    services:
+      pg:
+        image: postgres:12
+        env:
+          POSTGRES_DB: myskills
+          POSTGRES_USER: myskills
+          POSTGRES_PASSWORD: myskills
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -28,10 +43,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Start Postgres
-      run: |
-        docker-compose build
-        docker-compose up pg
     - name: Run Tests
       run: |
         python manage.py test
