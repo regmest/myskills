@@ -25,6 +25,14 @@ dc up:
 	docker-compose up --build
 
 
+# coverage check
+coverage:
+	coverage run manage.py test
+	coverage report -m
+
+coverage submit:
+	COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN coveralls
+
 
 
 # docker build --progress=plain . -t myskills
