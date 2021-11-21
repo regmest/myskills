@@ -29,7 +29,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Start Postgres
-      run: docker-compose up pg
+      run: |
+        docker-compose build
+        docker-compose up pg
     - name: Run Tests
       run: |
         python manage.py test
