@@ -7,8 +7,6 @@ from skillprofile.models import Skill, SkillTag
 
 
 class TestSkillprofile(TestCase):
-    def setUp(self):
-        print('setUp')
 
     def test_main_page(self):
         response = self.client.get('/')
