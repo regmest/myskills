@@ -21,7 +21,7 @@ services:
   web-app:
     build: .
     environment:
-      DB_CONN_URI: psycopg2+postgresql://myskills:myskills@pg:5432/myskills
+      DB_CONN_URI: postgresql://myskills:myskills@pg:5432/myskills
     command: >
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
