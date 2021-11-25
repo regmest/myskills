@@ -6,13 +6,31 @@
 
 {% block content %}
 
-<h1 class="mt-2">Myskills</h1>
+<div class="my-3"><h1>Myskills</h1></div>
 <hr class="mt-0 mb-4">
 
 <br><h1 class="display-6">Website where everyone can track their skill progress.</h1><br>
 
-<h3>Used tools:</h3>
 
+<h2 class="my-2">Quick overview</h2>
+
+<div class="my-4">First of all, register! Push the <mark>Register</mark> button in the upper right corner.</div>
+<div class="my-4">After that, you will find out that the <b>My profile</b> button has become active.</div>
+<div class="my-4">There you can fill in your profile info: name, email, about. Don't forget to change default user picture! 🌝</div>
+<div class="my-4">Now go to <b>Skills</b> button on the navbar. There you could see all the skills that anyone has ever taken. Add skills you want to learn! 💪</div>
+<div class="my-4">If needed you can add tags, too. Full list of them is by <b>Tags</b> button.</div>
+<div class="my-4">Remember, you can change only your own skills. They are listed on <b>My skills</b> page.</div>
+<div class="my-4">Fuh, that's all. Good luck! 🍀</div>
+
+
+<h2 class="my-2">Used tools</h2>
+
+
+
+
+
+
+<br>
 <div class="row row-cols-1 row-cols-md-2 g-4">
  <div class="col">
   <div class="card mb-3 h-100">
@@ -21,11 +39,11 @@
     <h5 class="card-title">Django</h5>
     <p class="card-text">
         <ul>
-            <li>Models links: OneToOne (User<->UserInfo), OneToMany (User<->Skill), ManyToMany (Skill<->Tag)</li>
-            <li>ORM (for several views)</li>
-            <li>CBV, generics, forms</li>
+            <li>Models links: OneToOne, OneToMany, ManyToMany</li>
+            <li>ORM, CBV, generics, forms</li>
+            <li>Static and Media files</li>
             <li>Permissions: UserPassesTestMixin, LoginRequiredMixin</li>
-            <li>Tests</li>
+            <li>Testing via workflow</li>
             <li>Debug-tool-bar</li>
         </ul>
     </p>
@@ -39,9 +57,9 @@
     <h5 class="card-title">Boostrap</h5>
     <p class="card-text">
         <ul>
-            <li>JS and CSS are added to static and available to all apps.</li>
-            <li>Base template has navbar and footer.</li>
-            <li>Cards with used tools on the main page.</li>
+            <li>JS and CSS are added to static and available to all apps</li>
+            <li>Base template has navbar and footer</li>
+            <li>Cards, tags, buttons and so on</li>
         </ul>
     </p>
    </div>
@@ -53,7 +71,7 @@
       <div class="card-body">
         <h5 class="card-title">Docker</h5>
         <p class="card-text">
-            Project is dockerized, application and database are deployed on the same network using docker-compose.
+          <li>Project is dockerized, application and database are deployed on the same network using docker-compose</li>
         </p>
       </div>
     </div>
@@ -64,11 +82,12 @@
    <div class="card-body">
     <h5 class="card-title">Postgres</h5>
     <p class="card-text">
-        Postgres is project database.
+       <li>Postgres is project database</li>
     </p>
    </div>
   </div>
  </div>
 </div>
+
 
 {% endblock %}
