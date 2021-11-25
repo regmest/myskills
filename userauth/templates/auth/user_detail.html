@@ -21,18 +21,18 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2"><h6>Username</h6></div>
-    <div class="col-sm-2">{{ user_object.username }}</div>
+    <div class="col-sm-2">{{ user_object.username | capfirst }}</div>
   </div>
   {% if object.first_name %}
   <div class="row">
     <div class="col-sm-2"><h6>First name</h6></div>
-    <div class="col-sm-2">{{ user_object.first_name }}</div>
+    <div class="col-sm-2">{{ user_object.first_name | capfirst }}</div>
   </div>
   {% endif %}
   {% if object.last_name %}
   <div class="row">
     <div class="col-sm-2"><h6>Last name</h6></div>
-    <div class="col-sm-2">{{ user_object.last_name }}</div>
+    <div class="col-sm-2">{{ user_object.last_name | capfirst }}</div>
   </div>
   {% endif %}
   {% if object.email %}

@@ -19,6 +19,12 @@
 <ul>
     <li>
         <a href="{{ userskill.get_userskill_details_url }}">{{ userskill.name | capfirst }}</a>
+        {% if userskill.author_user == user and userskill.status == 'finished' %}
+          <span class="badge bg-secondary"> done 👍 </span>
+        {% endif %}
+        {% if userskill.author_user == user and userskill.status != 'failed' and userskill.status != 'finished' %}
+          <span class="badge bg-secondary">learning ✏️</span>
+        {% endif %}
     </li>
 </ul>
 {% endfor %}
