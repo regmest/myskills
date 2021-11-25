@@ -13,7 +13,7 @@ migrate:
 
 # for local run
 # step #1
-dcup-pg:
+dcup_pg:
 	docker-compose up pg
 # step #2
 run:
@@ -30,7 +30,7 @@ coverage:
 	coverage run manage.py test
 	coverage report -m
 
-coverage submit:
+coverage_submit:
 	COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN coveralls
 
 
