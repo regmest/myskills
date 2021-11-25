@@ -13,7 +13,7 @@ migrate:
 
 # for local run
 # step #1
-dc up pg:
+dcup-pg:
 	docker-compose up pg
 # step #2
 run:
@@ -21,7 +21,7 @@ run:
 
 
 # docker
-dc up:
+dcup:
 	docker-compose up --build
 
 
