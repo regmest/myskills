@@ -7,13 +7,16 @@
 <body>
 
 <div class="my-3"><h1>
+    <img src="{{ user_object.userinfo.user_pic.url }}" width="80" height="auto">
     {% if user.username == user_object.username %}
         My Info
+        {{ user_object.user_pic.url }}
     {% else %}
         {{ user_object.username | capfirst }} Info
     {% endif %}
 </h1></div>
 <hr class="mt-0 mb-4">
+
 
 <div class="container">
   <div class="row">
@@ -32,24 +35,52 @@
     <div class="col-sm-2">{{ user_object.last_name }}</div>
   </div>
   {% endif %}
-  {% if object.last_name %}
+  {% if object.email %}
   <div class="row">
     <div class="col-sm-2"><h6>Email</h6></div>
     <div class="col-sm-2">{{ user_object.email }}</div>
   </div>
   {% endif %}
-  {% if user_object.userinfo.about %}
+
   <div class="row">
     <div class="col-sm-2"><h6>About</h6></div>
-    <div class="col-sm-9">{{ user_object.userinfo.about }}</div>
+    {% if user_object.userinfo.about %}
+    <div class="col-sm-9">
+      {{ user_object.userinfo.about }}
+      {% if user.username == user_object.username or perms.userauth.change_user %}
+      <a href="{% url 'user-about-update' user_object.username %}" class="btn btn-link">Edit</a>
+      {% endif %}
+    </div>
+    {% else %}
+    {% if user.username == user_object.username or perms.userauth.change_user %}
+    <div class="col-sm-9"><a href="{% url 'user-about-create' user_object.username %}">Add some info!</a></div>
+    {% endif %}
+    {% endif %}
+  </div>
+
+  {% if user.username == user_object.username or perms.userauth.change_user %}
+  <div class="row">
+    <div class="col-sm-2"><h6>User Picture</h6></div>
+    <div class="col-sm-5">
+      <a href="{% url 'user-about-update' user_object.username %}">Change user picture</a>
+    </div>
   </div>
   {% endif %}
+
+    {% if user.username == user_object.username or perms.userauth.change_user %}
+  <div class="row">
+    <div class="col-sm-2"><h6>Password</h6></div>
+    <div class="col-sm-5">
+      <a href="{% url 'password-change' %}">Change Password</a>
+    </div>
+  </div>
+  {% endif %}
+
 </div>
 
 <div class="my-3">
   {% if user.username == user_object.username or perms.userauth.change_user %}
-    <a href="{% url 'user-update' user_object.username %}" class="btn btn-primary">Edit Profile</a>
-    <a href="{% url 'password-change' %}" class="btn btn-primary">Change Password</a>
+    <a href="{% url 'user-update' user_object.username %}" class="btn btn-primary">Edit Main Info</a>
   {% endif %}
 </div>
 
