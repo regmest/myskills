@@ -46,16 +46,10 @@ class SkillTagUpdate(UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user.has_perm('skillprofile.change_skilltag')
 
-# TODO skill tag delete
-
 
 class SkillList(ListView):
     model = Skill
     queryset = Skill.objects.only('name', 'slug')#.distinct('name')
-
-    # TODO добавить кнопку "хочу изучать" с добавлением скилла в UserSkill пересылающую на user-skill-create
-    # TODO вывести теги в ряд
-    # TODO на PG попробовать distinct
 
 
 class SkillDetail(DetailView):
@@ -70,10 +64,6 @@ class SkillDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['tags'] = self.get_tags()
         return context
-
-    # TODO добавить кнопку "хочу изучать" рядом с не моими скиллами
-    # TODO вывести теги в ряд
-    # TODO напротив скиллов, которые юзер уже изучает тег "learning"
 
 
 class SkillCreate(LoginRequiredMixin, CreateView):

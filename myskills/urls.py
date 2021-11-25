@@ -14,23 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, reverse_lazy
 from django.views.generic import TemplateView
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 import skillprofile.views
 import userauth.views
-from myskills.settings import DEBUG
+from myskills.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
 from userauth.views import UserCreateView
 
 
-# TODO
-#   на странице пользователя возможность заполнить about
-#   на странице пользователя карточки с скиллами по статусам
-
-
 urlpatterns = [
+
     # main
     path('', TemplateView.as_view(template_name='skillprofile/index.html'), name='main-page'),
     path('about/', TemplateView.as_view(template_name='skillprofile/index.html'), name='about'),
@@ -46,9 +43,11 @@ urlpatterns = [
     path('accounts/password-change/done', PasswordChangeDoneView.as_view(
         template_name='registration/custom_password_change_done.html'), name="password-change-done"),
 
-    # user about
+    # user page
     url(r'^accounts/(?P<username>[\w.-]+)/$', userauth.views.UserDetail.as_view(), name='user-detail'),
     url(r'^accounts/(?P<username>[\w.-]+)/update/$', userauth.views.UserUpdate.as_view(), name='user-update'),
+    url(r'^accounts/(?P<username>[\w.-]+)/about/create/$', userauth.views.UserInfoCreate.as_view(), name='user-about-create'),
+    url(r'^accounts/(?P<slug>[\w.-]+)/about/update/$', userauth.views.UserInfoUpdate.as_view(), name='user-about-update'),
 
     # skills
     path('skills/', skillprofile.views.SkillList.as_view(), name='all-skills'),
@@ -69,7 +68,7 @@ urlpatterns = [
     url(r'^accounts/(?P<username>[\w.-]+)/skills/(?P<slug>[\w.-]+)/delete/$', skillprofile.views.SkillDelete.as_view(),
         name='user-skill-delete'),
 
-]
+] + static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 if DEBUG:
     import debug_toolbar
